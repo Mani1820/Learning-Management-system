@@ -26,24 +26,24 @@ class _GetStartedPageState extends State<GetStartedPage> {
           },
           children: [
             Container(
-              width: 200,
-              height: 200,
+              width: MediaQuery.of(context).size.width *0.5,
+              height: MediaQuery.of(context).size.width *0.3,
               color: Colors.yellow,
               child: const Center(
                 child: Text('Slide 1'),
               ),
             ),
             Container(
-              width: 200,
-              height: 200,
+              width:MediaQuery.of(context).size.width *0.5,
+              height: MediaQuery.of(context).size.width *0.3,
               color: Colors.lightBlue,
               child: const Center(
                 child: Text('Slide 2'),
               ),
             ),
             Container(
-              width: 200,
-              height: 200,
+              width: MediaQuery.of(context).size.width *0.5,
+              height: MediaQuery.of(context).size.width *0.3,
               color: Colors.purpleAccent,
               child: const Center(
                 child: Text('slide 3'),
