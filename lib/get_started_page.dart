@@ -35,7 +35,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
             Container(
               width: 200,
               height: 200,
-              ),
+
               color: Colors.lightBlue,
               child:const Center(
                 child: Text('Slide 2'),
