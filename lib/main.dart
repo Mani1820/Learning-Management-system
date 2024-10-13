@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/get_started_page.dart';
 
 void main(){
   runApp( const MyApp());
@@ -8,19 +9,6 @@ void main(){
 
    @override
    Widget build(BuildContext context) {
-     return  MaterialApp(
-       home: Scaffold(
-         body: Center(
-           child: Container(
-             decoration: const BoxDecoration(
-               gradient: LinearGradient(colors: [
-                 Colors.purpleAccent,
-                 Colors.purple
-               ])
-             ),
-           ),
-         ),
-       ),
-     );
+     return const GetStartedPage();
    }
  }
