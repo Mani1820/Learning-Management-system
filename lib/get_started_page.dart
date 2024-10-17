@@ -28,10 +28,15 @@ class _GetStartedPageState extends State<GetStartedPage> {
             Align(
               alignment: Alignment.center,
               child: SizedBox(
-                width: MediaQuery.of(context).size.width*0.5,
-                height: MediaQuery.of(context).size.width*0.3,
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: MediaQuery.of(context).size.height * 0.3,
                 child: Container(
-                  color: Colors.yellow,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                            'Assets/onboarding_images/headerleftimage.png'),
+                        fit: BoxFit.cover),
+                  ),
                   child: const Center(
                     child: Text('Slide 1'),
                   ),
@@ -41,10 +46,14 @@ class _GetStartedPageState extends State<GetStartedPage> {
             Align(
               alignment: Alignment.center,
               child: SizedBox(
-                width: MediaQuery.of(context).size.width*0.5,
-                height: MediaQuery.of(context).size.width*0.3,
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: MediaQuery.of(context).size.height * 0.3,
                 child: Container(
-                  color: Colors.cyanAccent,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                              'Assets/onboarding_images/headerleftimage.png'),
+                          fit: BoxFit.cover)),
                   child: const Center(
                     child: Text('Slide 2'),
                   ),
@@ -52,18 +61,22 @@ class _GetStartedPageState extends State<GetStartedPage> {
               ),
             ),
             Align(
-              alignment: Alignment.center,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width*0.5,
-                height: MediaQuery.of(context).size.width*0.3,
-                child: Container(
-                  color: Colors.purpleAccent,
-                  child: const Center(
-                    child: Text('Slide 3'),
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                              'Assets/onboarding_images/headerleftimage.png'),
+                          fit: BoxFit.cover),
+                    ),
+                    child: const Center(
+                      child: Text('Slide 3'),
+                    ),
                   ),
-                ),
-              ),
-            ),
+                )),
           ],
         ),
         floatingActionButton: FloatingActionButton(
