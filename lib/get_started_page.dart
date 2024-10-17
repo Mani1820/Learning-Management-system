@@ -87,7 +87,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
                   curve: Curves.ease);
             }
           },
-          child: const Icon(Icons.arrow_forward),
+          child: const Text('next'),
         ),
       ),
     );
