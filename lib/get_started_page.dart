@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/screens/login_screen.dart';
 
 class GetStartedPage extends StatefulWidget {
   const GetStartedPage({super.key});
@@ -10,12 +11,24 @@ class GetStartedPage extends StatefulWidget {
 PageController _controller = PageController();
 
 class _GetStartedPageState extends State<GetStartedPage> {
-  final _currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "INTERFY",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.question_mark_rounded,color: Colors.white,),
+              onPressed: () {},
+            ),
+          ],
+          backgroundColor: Colors.teal.shade800,
+        ),
         body: PageView(
           controller: _controller,
           physics: const BouncingScrollPhysics(),
@@ -61,33 +74,23 @@ class _GetStartedPageState extends State<GetStartedPage> {
               ),
             ),
             Align(
-                alignment: Alignment.center,
-                child: SizedBox(
+              alignment: Alignment.center,
+              child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.6,
                   height: MediaQuery.of(context).size.height * 0.3,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                              'Assets/onboarding_images/headerleftimage.png'),
-                          fit: BoxFit.cover),
+                  child: Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()));
+                      },
+                      child: const Text('Get Started'),
                     ),
-                    child: const Center(
-                      child: Text('Slide 3'),
-                    ),
-                  ),
-                )),
+                  )),
+            ),
           ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            if (_currentPageIndex < 3) {
-              _controller.nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.ease);
-            }
-          },
-          child: const Text('next'),
         ),
       ),
     );
