@@ -9,6 +9,8 @@ void main(){
 
    @override
    Widget build(BuildContext context) {
-     return const GetStartedPage();
+     return const MaterialApp(
+         debugShowCheckedModeBanner: false,
+         home:GetStartedPage());
    }
  }
