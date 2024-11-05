@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lms/get_started_page.dart';
+import 'package:lms/screens/Onboarding/get_started_page.dart';
 
 void main(){
   runApp( const MyApp());
