@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lms/screens/home.dart';
-import 'package:lms/screens/Onboarding/sign_up_page.dart';
+import 'package:lms/screens/Onboarding/login/forgot_password.dart';
+import 'package:lms/screens/Onboarding/login/help.dart';
+import 'package:lms/screens/home_screen/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -34,9 +35,9 @@ class _LoginPageState extends State<LoginPage> {
         value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
     if (!hasUppercase || !hasDigits || !hasSpecialCharacters) {
       return 'Password must contain \n'
-          'at least one uppercase letter\n'
-          'one number\n'
-          'and one special character';
+          '- at least one uppercase letter\n'
+          '- one number\n'
+          '- and one special character';
     }
     return null;
   }
@@ -55,7 +56,9 @@ class _LoginPageState extends State<LoginPage> {
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Email or password is incorrect')),
+          const SnackBar(
+            content: Text('Email or password is incorrect'),
+          ),
         );
       }
     }
@@ -65,76 +68,95 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Help()));
+            },
+            icon: const Icon(
+              Icons.question_mark,
+              color: Colors.white,
+            ),
+          )
+        ],
+        title: const Text(
+          'Login',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.teal,
       ),
       body: SafeArea(
-          child: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(image: AssetImage(''), fit: BoxFit.cover),
+        child: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                image:
+                    DecorationImage(image: AssetImage(''), fit: BoxFit.cover),
+              ),
             ),
-          ),
-          Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.67,
-              height: MediaQuery.of(context).size.height * 0.50,
-              padding: const EdgeInsets.all(20),
-              margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-              decoration: BoxDecoration(
+            Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.67,
+                height: MediaQuery.of(context).size.height * 0.50,
+                padding: const EdgeInsets.all(20),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.9),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.black.withOpacity(0.9),
-                        blurRadius: 20,
-                        spreadRadius: 7,
-                        offset: const Offset(3, 3))
-                  ]),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'login',
-                      style: TextStyle(
-                        color: Colors.teal,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                      color: Colors.black.withOpacity(0.9),
+                      blurRadius: 20,
+                      spreadRadius: 7,
+                      offset: const Offset(3, 3),
+                    )
+                  ],
+                ),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'login',
+                        style: TextStyle(
+                          color: Colors.teal,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        border: OutlineInputBorder(),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                      const SizedBox(
+                        height: 30,
                       ),
-                      validator: _emailValidation,
-                      onSaved: (value) => _email = value,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: 'Password',
-                        border: OutlineInputBorder(),
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: 'Email',
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 10),
+                        ),
+                        validator: _emailValidation,
+                        onSaved: (value) => _email = value,
                       ),
-                      validator: _validatePassword,
-                      onSaved: (value) => _password = value,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: 'Password',
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 10),
+                        ),
+                        validator: _validatePassword,
+                        onSaved: (value) => _password = value,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
                         onPressed: _submit,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.teal,
@@ -145,40 +167,38 @@ class _LoginPageState extends State<LoginPage> {
                         child: const Text(
                           'login',
                           style: TextStyle(color: Colors.white),
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                            onPressed: () {},
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ForgotPassword(),
+                                ),
+                              );
+                            },
                             child: const Text(
                               'Forget password ?',
                               style: TextStyle(fontSize: 12),
-                            )),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SignUpPage()));
-                            },
-                            child: const Text(
-                              'Sign Up',
-                              style: TextStyle(fontSize: 12),
-                            ))
-                      ],
-                    )
-                  ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
-      )),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

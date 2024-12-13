@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lms/screens/Onboarding/login_screen.dart';
+import 'package:lms/screens/Onboarding/login/login_screen.dart';
 
 class GetStartedPage extends StatefulWidget {
   const GetStartedPage({super.key});
